@@ -22,7 +22,7 @@
                 }               
             ],
             "outArguments": [],
-            "url": "https://twilliocustomactiviti.herokuapp.com/journeybuilder/execute/",
+            "url": "https://twiliosmssen.herokuapp.com/journeybuilder/execute/",
             "verb": "POST",
             "body": "",
             "format": "json",
@@ -34,9 +34,9 @@
         }
     },
     "configurationArguments": {
-      "applicationExtensionKey": "5d596207-02f0-4894-80f8-3d8f5f4f7f7e",
+      "applicationExtensionKey": "cb5eb93c-9200-4fa9-8526-1300ae217059",
        "save": {
-           "url": "https://twilliocustomactiviti.herokuapp.com/journeybuilder/save/",
+           "url": "https://twiliosmssen.herokuapp.com/journeybuilder/save/",
             "verb": "POST",
             "body": "",
             "format": "json",
@@ -44,7 +44,7 @@
             "timeout": 3000 
        },
        "publish": {
-           "url": "https://twilliocustomactiviti.herokuapp.com/journeybuilder/publish/",
+           "url": "https://twiliosmssen.herokuapp.com/journeybuilder/publish/",
             "verb": "POST",
             "body": "",
             "format": "json",
@@ -52,7 +52,7 @@
             "timeout": 3000
        },
        "validate": {
-           "url": "https://twilliocustomactiviti.herokuapp.com/journeybuilder/validate/",
+           "url": "https://twiliosmssen.herokuapp.com/journeybuilder/validate/",
             "verb": "POST",
             "body": "",
             "format": "json",
@@ -60,7 +60,7 @@
             "timeout": 3000
        },
        "stop": {
-           "url": "https://twilliocustomactiviti.herokuapp.com/journeybuilder/stop",
+           "url": "https://twiliosmssen.herokuapp.com/journeybuilder/stop",
             "verb": "POST",
             "body": "",
             "format": "json",
