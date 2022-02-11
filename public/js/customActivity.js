@@ -101,7 +101,7 @@ define([
             "authToken": authToken,
             "messagingService": messagingService,
             "body": body,
-            "to": "{{Contact.Attribute.Custom_SMS.twilioNumber}}" ,//<----This should map to your data extension name and phone number column
+            "to": "{{Contact.Attribute.twiliomsgsend.phonenumber}}" ,//<----This should map to your data extension name and phone number column
            
         }];       
         payload['metaData'].isConfigured = true;
