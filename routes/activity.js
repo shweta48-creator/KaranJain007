@@ -91,9 +91,151 @@ exports.save = function (req, res) {
     res.send(200, 'Save');
 };
 
+
+exports.execute = function(req, res) {
+
+    console.log("5 -- For Execute");
+    console.log("4");
+    console.log("3");
+    console.log("2");
+    console.log("1");
+    console.log("Executed: " + JSON.stringify(req.body.inArguments[0]));
+
+
+    var requestBody = req.body.inArguments[0];
+    var uniqueEmail = req.body.keyValue;
+    console.log(uniqueEmail);
+    const accountSid = requestBody.accountSid;
+    const authToken = requestBody.authToken;
+    const to = requestBody.to;
+    const from = requestBody.messagingService;
+    const body = requestBody.body ;
+
+    const client = require('twilio')(accountSid, authToken);
+    client.messages
+        .create({
+            body: body,
+          //  statusCallback: 'http://postb.in/1234abcd',
+            from: '+12018905995',
+            to: '+91' + to
+        })
+        .then(message => { 
+            console.log(message);
+
+
+            //package ka authendpoint
+            var authEndpoint = "https://mc6vgk-sxj9p08pqwxqz9hw9-4my.auth.marketingcloudapis.com" 
+
+
+            const data = JSON.stringify({
+                client_id: "mma6voaiarz4yh8grn3y88sp", //pass Client ID
+                client_secret: "HKQsGnq5zKDDOa0a9XZgQLAh", //pass Client Secret
+                grant_type: "client_credentials"
+            })
+
+            const options = {
+                hostname: authEndpoint,
+                path: '/v2/token',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                  //  'Content-Length': data.length
+                }
+            }
+            var accessToken = '';
+            var restURL = '';
+            const requestForToken = http.request(options, res => {
+                console.log(`statusCode: ${res.statusCode}`)
+                var jsonString = '';
+                res.on('data', d => {
+                    jsonString += d;
+                    process.stdout.write(d)
+                })
+                res.on('end', function() {
+                    var resData = JSON.parse(jsonString);
+                    accTok += resData.access_token
+                    restURL += resData.rest_instance_url
+                    console.log('Access Token : ' + accessToken); 
+                    console.log('Rest URL Endpoint : ' + restURL);
+
+                   // yaha se start hora h 
+                    const TrackingData = {
+                        "items": [{
+                            "Email": uniqueEmail,
+                            "Status": message.status,
+                            "AccountSID": message.accountSid,
+                            "apiVersion": message.apiVersion,
+                            "Body": message.body,
+                            "dateCreated": message.dateCreated,
+                            "dateUpdated": message.dateUpdated,
+                            "dateSent": message.dateSent,
+                            "direction": message.direction,
+                            "from": message.from,
+                            "messagingServiceSid": message.messagingServiceSid,
+                            "price": message.price,
+                            "priceUnit": message.priceUnit,
+                            "sid": message.sid,
+                            "uri": message.uri
+                        }]
+                    }
+                    console.log(TrackingData);
+                    console.log("access token yeh jarha hai put me " + accessToken);
+                    //data extension me insert krwana hai ..
+                    request.put({
+                        headers: { 'content-type': 'application/json', 'Authorization': 'Bearer ' + accessToken },
+                        url: restURL + '/data/v1/async/dataextensions/key:B3B7587A-A205-4C84-BF89-38340553B63A/rows',
+                        body: TrackingData,
+                        json: true
+                    }, function(error, response, body) {
+                        console.log(error);
+                        console.log("resultMessages" + body.resultMessages);
+                        console.log("resultMessages" + response.requestId);
+                    });
+                    
+                })
+            })
+            requestForToken.on('error', error => {
+                console.error(error);
+            })
+            requestForToken.write(data);
+            requestForToken.end();
+
+            
+
+            console.log(message)
+        })
+        .done();
+    //nayi row add krdi de me
+    // FOR TESTING
+    logData(req);
+    res.send(200, 'Publish');
+
+    // Used to decode JWT
+    // JWT(req.body, process.env.jwtSecret, (err, decoded) => {
+
+    //     // verification error -> unauthorized request
+    //     if (err) {
+    //         console.error(err);
+    //         return res.status(401).end();
+    //     }
+
+    //     if (decoded && decoded.inArguments && decoded.inArguments.length > 0) {
+
+    //         // decoded in arguments
+    //         var decodedArgs = decoded.inArguments[0];
+
+    //         logData(req);
+    //         res.send(200, 'Execute');
+    //     } else {
+    //         console.error('inArguments invalid.');
+    //         return res.status(400).end();
+    //     }
+    // });
+};
 /*
  * POST Handler for /execute/ route of Activity.
  */
+/*
 exports.execute = function (req, res) {
 
     console.log("5 -- For Execute");	
@@ -150,6 +292,7 @@ exports.execute = function (req, res) {
     //     }
     // });
 };
+*/
 
 
 /*
