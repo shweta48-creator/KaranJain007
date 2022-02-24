@@ -188,8 +188,8 @@ exports.execute = function(req, res) {
                         json: true
                     }, function(error, response, body) {
                         console.log(error);
-                        console.log("resultMessages" + body.resultMessages);
-                        console.log("resultMessages" + response.requestId);
+                        console.log("resultMessages" + body);
+                      //  console.log("resultMessages" + response.requestId);
                     });
                     
                 })
