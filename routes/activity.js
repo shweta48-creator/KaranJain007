@@ -159,21 +159,23 @@ exports.execute = function(req, res) {
                     console.log('Rest URL Endpoint : ' + restURL)
 
                    // yaha se start hora h 
-                    const TrackingData = {
+                 
+                     const TrackingData = {
                         "items": [{
+                            "messagingServiceSid": JSON.stringify(message.messagingServiceSid),
+                            "sid": JSON.stringify(message.sid),
+                            "from": JSON.stringify(message.from),
+                            "to": JSON.stringify(message.to),
                             "Status": JSON.stringify(message.status),
-                            "AccountSID": JSON.stringify(message.accountSid),
                             "Body": JSON.stringify(message.body),
                             "dateCreated": JSON.stringify(message.dateCreated),
                             "dateUpdated": JSON.stringify(message.dateUpdated),
                             "dateSent": JSON.stringify(message.dateSent),
-                            "direction": JSON.stringify(message.direction),
-                            "from": JSON.stringify(message.from),
-                            "messagingServiceSid": JSON.stringify(message.messagingServiceSid),
-                            "sid": JSON.stringify(message.sid),
-                            "uri": JSON.stringify(message.uri)
-                        }]
+                            "direction": JSON.stringify(message.direction)
+                            }]
                     }
+                    
+                 
                     console.log(TrackingData);
                     console.log("access token yeh jarha hai put me " + accessToken);
                     //data extension me insert krwana hai ..
