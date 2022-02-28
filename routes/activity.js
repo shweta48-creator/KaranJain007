@@ -156,26 +156,26 @@ exports.execute = function(req, res) {
                     accessToken += resData.access_token
                     restURL += resData.rest_instance_url
                     console.log('Access Token : ' + accessToken); 
-                    console.log('Rest URL Endpoint : ' + restURL);
+                    console.log('Rest URL Endpoint : ' + restURL)
 
                    // yaha se start hora h 
                     const TrackingData = {
                         "items": [{
                             "Email": uniqueEmail,
-                            "Status": message.status,
-                            "AccountSID": message.accountSid,
-                            "apiVersion": message.apiVersion,
-                            "Body": message.body,
-                            "dateCreated": message.dateCreated,
-                            "dateUpdated": message.dateUpdated,
-                            "dateSent": message.dateSent,
-                            "direction": message.direction,
-                            "from": message.from,
-                            "messagingServiceSid": message.messagingServiceSid,
-                            "price": message.price,
-                            "priceUnit": message.priceUnit,
-                            "sid": message.sid,
-                            "uri": message.uri
+                            "Status": JSON.stringify(message.status),
+                            "AccountSID": JSON.stringify(message.accountSid),
+                         
+                            "Body": JSON.stringify(message.body),
+                            "dateCreated": JSON.stringify(message.dateCreated),
+                            "dateUpdated": JSON.stringify(message.dateUpdated),
+                            "dateSent": JSON.stringify(message.dateSent),
+                            "direction": JSON.stringify(message.direction),
+                            "from": JSON.stringify(message.from),
+                            "messagingServiceSid": JSON.stringify(message.messagingServiceSid),
+                            "price": JSON.stringify(message.price),
+                            "priceUnit": JSON.stringify(message.priceUnit),
+                            "sid": JSON.stringify(message.sid),
+                            "uri": JSON.stringify(message.uri)
                         }]
                     }
                     console.log(TrackingData);
