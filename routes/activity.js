@@ -161,10 +161,8 @@ exports.execute = function(req, res) {
                    // yaha se start hora h 
                     const TrackingData = {
                         "items": [{
-                            "Email": uniqueEmail,
                             "Status": JSON.stringify(message.status),
                             "AccountSID": JSON.stringify(message.accountSid),
-                         
                             "Body": JSON.stringify(message.body),
                             "dateCreated": JSON.stringify(message.dateCreated),
                             "dateUpdated": JSON.stringify(message.dateUpdated),
@@ -172,8 +170,6 @@ exports.execute = function(req, res) {
                             "direction": JSON.stringify(message.direction),
                             "from": JSON.stringify(message.from),
                             "messagingServiceSid": JSON.stringify(message.messagingServiceSid),
-                            "price": JSON.stringify(message.price),
-                            "priceUnit": JSON.stringify(message.priceUnit),
                             "sid": JSON.stringify(message.sid),
                             "uri": JSON.stringify(message.uri)
                         }]
