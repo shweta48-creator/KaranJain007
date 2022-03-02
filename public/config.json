@@ -69,8 +69,12 @@
        }
     },
     "wizardSteps": [
-       { "label": "Create SMS Message", "key": "step1" }
+        { "label": "Twilio Authentication", "key": "step1" },
+        { "label": "Select Channel", "key": "step2" },
+        { "label": "Create Message", "key": "step3" },
+        { "label": "Summary", "key": "step4" }
     ],
+    
     "userInterfaces": {
        "configModal": {
            "height": 600,
@@ -85,42 +89,42 @@
                         "accountSid": {
                             "dataType": "String",
                             "isNullable": false,
-                            "direction": "out"   
+                            "direction": "in"   
                         }
                     },                    
                     {
                         "authToken": {
                             "dataType": "String",
                             "isNullable": false,
-                            "direction": "out"   
+                            "direction": "in"   
                         }
                     },                    
                     {
                         "from": {
                             "dataType": "Phone",
                             "isNullable": true,
-                            "direction": "out"   
+                            "direction": "in"   
                         }
                     },                    
                     {
                         "to": {
                             "dataType": "Text",
                             "isNullable": false,
-                            "direction": "out"   
+                            "direction": "in"   
                         }
                     },
                     {
                         "body": {
                             "dataType": "String",
-                            "isNullable": false,
-                            "direction": "out"   
+                            "isNullable": true,
+                            "direction": "in"   
                         }
                     },                    
                     {
                         "email": {
                             "dataType": "Email",
                             "isNullable": true,
-                            "direction": "out"
+                            "direction": "in"
                         }
                     }
                 ],
